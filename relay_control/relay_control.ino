@@ -3,21 +3,22 @@ int data;
 void setup() 
 { 
   Serial.begin(9600); 
-  pinMode(11,OUTPUT);
-  digitalWrite (11, LOW); //initially set to low
+  pinMode(LED_BUILTIN,OUTPUT);
+  digitalWrite (LED_BUILTIN, LOW);  // Set to LOW so it starts as closed
 }
  
 void loop() 
 {
+
 while (Serial.available())
   {
-    data = Serial.read();
+    data = Serial.read();  // Listening serial port
   }
 
   if (data == '1')
-  digitalWrite (11, HIGH);
-
+  digitalWrite (LED_BUILTIN, HIGH);  // Trigger pin for turn on LEDS
+  
   else if (data == '0')
-  digitalWrite (11, LOW);
-
+  digitalWrite (LED_BUILTIN, LOW);  // Trigger pin for turn off LEDS
+  
 }
