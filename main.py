@@ -9,9 +9,6 @@ arduinoData = serial.Serial("COM4", 9600)  # Arduino comm channel
 time.sleep(3)  # Waiting for the arduino
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'  # Pytesseract location on PC
-
-death_count = 0  # Predetermined death count
-kill_count = 0  # Predetermined kill count
 kdaloc = (1663, 0, 1720, 25)  # K/D/A location on screen
 
 
@@ -36,19 +33,28 @@ def imToString(kda):  # Turning kill/death/assist to data
     return tesstr
 
 
-while True:
-    data = imToString(kdaloc)
-    # print(data)
-    if data != "":
-        kill = data[0]
-        death = data[2]
-        if int(death) > int(death_count):
-            ardupinOn()
-            death_count = death
 
-        if int(kill) > int(kill_count):
-            time.sleep(1)
-            ardupinOff()
-            kill_count = kill
+def main():
+    death_count = 0  # Predetermined death count
+    kill_count = 0  # Predetermined kill count
+
+    while True:
+        data = imToString(kdaloc)
+        # print(data)
+        if data != "":
+            kill = data[0]
+            death = data[2]
+            if int(death) > int(death_count):
+                ardupinOn()
+                death_count = death
+
+            if int(kill) > int(kill_count):
+                time.sleep(1)
+                ardupinOff()
+                kill_count = kill
+
+
+if __name__ == "__main__":
+    main()
 
 # 1663, 0, 1720, 25
