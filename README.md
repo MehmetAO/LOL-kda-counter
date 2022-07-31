@@ -11,4 +11,4 @@ Everytime you die in League of Legends game, a funny led sign with "Loser" writt
 This program watches the far upper right of the screen and turns that info to data with OCR. That data used for calculating deaths and kills. If you get killed. It talks to Arduino and it opens relay of led sign. When you get a kill vice versa.
   
 ### What Stage am I at  
-It is completed.
+It is ready and rolling.
